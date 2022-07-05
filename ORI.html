@@ -1,0 +1,486 @@
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Staatliches&display=swap');
+        body{
+            position:absolute;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            user-select:none;
+            -webkit-user-drag: none;
+            overflow:hidden;
+            margin:0px;
+            background-color:#121212;
+            height:100%;
+            width:100%;
+            top:-10%;
+        }
+
+        button{
+            box-shadow:0px 5px 5px #000;
+            margin-top:430px;
+            height:30px;
+            width:100px;
+            font-size:10px;
+        }
+        
+        button:active{
+            box-shadow:0px 1px 5px #000;
+            margin-top:434px;
+        }
+
+        .menu{
+            position:absolute;
+            height:250px;
+            width:600px;
+            background-color: rgba(14, 14, 14, 0.8);
+            border:4px solid #000;
+            opacity:1;
+            z-index:1;
+            margin-top:2300px;
+            transition:all 0.5s;
+            display:flex;
+            flex-wrap: wrap;
+            color: #000;
+            font-family: 'Press Start 2P', cursive;
+            font-size:10px;
+        }
+    </style>
+
+    <body>
+        <div id="PC" style="position:absolute;font-family: 'Press Start 2P', cursive; font-size:30px;color:#585858;text-shadow:0px 0px 5px #000;margin-top:100px;"></div>
+        <img id="BT1" src="https://i.imgur.com/530FYav.png" style="position:absolute;margin-right:400px;margin-top:0px;transform: scaleX(-1);">
+        <img id="BT2" src="https://i.imgur.com/530FYav.png" style="filter:hue-rotate(50deg);position:absolute;margin-right:400px;margin-top:80px;transform: scaleX(-1);">
+        <img id="BT3" src="https://i.imgur.com/530FYav.png" style="filter:hue-rotate(100deg);position:absolute;margin-right:400px;margin-top:160px;transform: scaleX(-1);">
+        <img id="BT4" src="https://i.imgur.com/530FYav.png" style="filter:hue-rotate(150deg);position:absolute;margin-right:400px;margin-top:240px;transform: scaleX(-1);">
+        <img id="BT5" src="https://i.imgur.com/530FYav.png" style="filter:hue-rotate(200deg);position:absolute;margin-right:400px;margin-top:320px;transform: scaleX(-1);">
+        <img id="BT6" src="https://i.imgur.com/530FYav.png" style="filter:hue-rotate(250deg);position:absolute;margin-left:400px;margin-top:0px;">
+        <img id="BT7" src="https://i.imgur.com/530FYav.png" style="filter:hue-rotate(300deg);position:absolute;margin-left:400px;margin-top:80px;">
+        <img id="BT8" src="https://i.imgur.com/530FYav.png" style="filter:hue-rotate(350deg);position:absolute;margin-left:400px;margin-top:160px;">
+        <img id="BT9" src="https://i.imgur.com/530FYav.png" style="filter:hue-rotate(400deg);position:absolute;margin-left:400px;margin-top:240px;">
+        <img id="BT10" src="https://i.imgur.com/530FYav.png" style="filter:hue-rotate(450deg);position:absolute;margin-left:400px;margin-top:320px;">
+        <img id="BTN" onclick="GeneratePower()" onmousedown="ButtonToggle(0)" onmouseup="ButtonToggle(1)" src="https://i.imgur.com/KLdBgL9.png" style="height:50px;margin-top:250px;cursor:pointer;"></button>
+        <button onclick="ShopMenuToggle()" style="position:absolute;margin-right:300px;font-family: 'Press Start 2P', cursive;color:#FFF;background-color:darkslategrey;text-shadow:0px 2px 4px #000;cursor:pointer;">Shop</button>
+        <button onclick="SystemsMenuToggle()" style="position:absolute;margin-left:0px;font-family: 'Press Start 2P', cursive;color:#FFF;background-color:darkslategrey;text-shadow:0px 2px 4px #000;cursor:pointer;">Systems</button>
+        <button onclick="UpgradesMenuToggle()" style="position:absolute;margin-left:300px;font-family: 'Press Start 2P', cursive;color:#FFF;background-color:darkslategrey;text-shadow:0px 2px 4px #000;cursor:pointer;">Upgrades</button>
+        <div id="systems" class="menu">
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;">
+                Crude Generator <br><br>
+                Owned: <span id="PowerGenerator1Amount">0</span><br><br><br>
+                Cost: <span id="PowerGenerator1Cost">30</span> Power<br>
+                <button onclick="BuyPowerGenerator1()" style="position:absolute;bottom:5px;right:5px;font-family: 'Press Start 2P', cursive;color:#FFF;background-color:darkslategrey;text-shadow:0px 2px 4px #000;cursor:pointer;">Buy 1x</button>
+            </div>
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;">
+                Second-Hand Solar Panels <br><br>
+                Owned: <span id="PowerGenerator2Amount">0</span><br><br><br>
+                Cost: <span id="PowerGenerator2Cost">30</span> Power<br>
+                <button onclick="BuyPowerGenerator2()" style="position:absolute;bottom:5px;right:5px;font-family: 'Press Start 2P', cursive;color:#FFF;background-color:darkslategrey;text-shadow:0px 2px 4px #000;cursor:pointer;">Buy 1x</button>
+            </div>
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;">
+                DIY Space Turbines <br><br>
+                Owned: <span id="PowerGenerator3Amount">0</span><br><br><br>
+                Cost: <span id="PowerGenerator3Cost">30</span> Power<br>
+                <button onclick="BuyPowerGenerator3()" style="position:absolute;bottom:5px;right:5px;font-family: 'Press Start 2P', cursive;color:#FFF;background-color:darkslategrey;text-shadow:0px 2px 4px #000;cursor:pointer;">Buy 1x</button>
+            </div>
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;">
+                B-TEC <br><br>
+                Owned: <span id="PowerGenerator4Amount">0</span><br><br><br>
+                Cost: <span id="PowerGenerator4Cost">30</span> Power<br>
+                <button onclick="BuyPowerGenerator4()" style="position:absolute;bottom:5px;right:5px;font-family: 'Press Start 2P', cursive;color:#FFF;background-color:darkslategrey;text-shadow:0px 2px 4px #000;cursor:pointer;">Buy 1x</button>
+            </div>
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;">
+                Lunar Panal Prototype <br><br>
+                Owned: <span id="PowerGenerator5Amount">0</span><br><br><br>
+                Cost: <span id="PowerGenerator5Cost">30</span> Power<br>
+                <button onclick="BuyPowerGenerator5()" style="position:absolute;bottom:5px;right:5px;font-family: 'Press Start 2P', cursive;color:#FFF;background-color:darkslategrey;text-shadow:0px 2px 4px #000;cursor:pointer;">Buy 1x</button>
+            </div>
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;">
+                Generic Space Storm Harvester <br><br>
+                Owned: <span id="PowerGenerator6Amount">0</span><br><br><br>
+                Cost: <span id="PowerGenerator6Cost">30</span> Power<br>
+                <button onclick="BuyPowerGenerator6()" style="position:absolute;bottom:5px;right:5px;font-family: 'Press Start 2P', cursive;color:#FFF;background-color:darkslategrey;text-shadow:0px 2px 4px #000;cursor:pointer;">Buy 1x</button>
+            </div>
+        </div>
+        <div id="shop" class="menu"></div>
+        <div id="upgrades" class="menu">
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;">
+            
+            </div>
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;"></div>
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;"></div>
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;"></div>
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;"></div>
+            <div style="position:relative;margin-left:10px;margin-top:5px;height:70px;width:280px;border:1px solid rgba(255, 255, 255, 0.7);background-color:#FFF;padding:2px;"></div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            var TBP = 0;
+
+            var CGA = 0;
+            var CGCOST = 7;
+            var CGCOSTM = 1.4;
+            var CGM = 0;
+            var CGU1 = 0;
+
+            var BSPA = 0;
+            var BSPCOST = 42;
+            var BSPCOSTM = 1.6;
+            var BSPM = 0;
+
+            let BTS = ['https://i.imgur.com/530FYav.png', 'https://i.imgur.com/tKrvhgM.png', 'https://i.imgur.com/6cvE0mX.png', 'https://i.imgur.com/4pgSZVi.png', 'https://i.imgur.com/t0r2PC8.png', 'https://i.imgur.com/Ht4wyyu.png', 'https://i.imgur.com/kg9ralp.png'];
+            let BTN = ['https://i.imgur.com/NH1gIFm.png', 'https://i.imgur.com/KLdBgL9.png'];
+            
+//          |------ Power Generator Arrays [Legend] ------|
+//          | [0]Name                                     |
+//          | [1]Base Cost                                |
+//          | [2]Cost Multiplier                          |
+//          | [3]Base Tick Speed                          |
+//          | [4]Tick Speed Multiplier                    |
+//          | [5]Base Power                               |
+//          | [6]Power Multipler                          |
+//          | [7]Amount Owned                             |
+//          |---------------------------------------------|
+
+            let PowerGenerator1 =[
+                'Crude Generator', 
+                7,
+                1.4,
+                3000,
+                0.01,
+                3,
+                10,
+                0
+            ]
+
+            let PowerGenerator2 =[
+                'Second-Hand Solar Panels', 
+                90,
+                1.7,
+                500,
+                0.1,
+                1,
+                12,
+                0
+            ]
+
+            let PowerGenerator3 =[
+                'DIY Space Turbines', 
+                500,
+                1.3,
+                5000,
+                0.1,
+                14,
+                6,
+                0
+            ]
+
+            let PowerGenerator4 =[
+                'B-TEC', 
+                2000,
+                1.7,
+                1000,
+                0.5,
+                43,
+                3,
+                0
+            ]
+
+            let PowerGenerator5 =[
+                'Lunar Panal Prototype', 
+                12000,
+                1.7,
+                100,
+                0.5,
+                3,
+                3,
+                0
+            ]
+
+            let PowerGenerator6 =[
+                'Generic Space Storm Harvester', 
+                50000,
+                1.7,
+                60000,
+                0.1,
+                7000,
+                6,
+                0
+            ]
+
+
+            function GeneratePower(){
+                TBP++;
+                SpriteUpdater();
+            }
+
+            function SpriteUpdater(){
+                $('#BT1').attr("src", BTS[(Math.floor(TBP/1)%7)]);
+                $('#BT2').attr("src", BTS[(Math.floor(TBP/7)%7)]);
+                $('#BT3').attr("src", BTS[(Math.floor(TBP/49)%7)]);
+                $('#BT4').attr("src", BTS[(Math.floor(TBP/343)%7)]);
+                $('#BT5').attr("src", BTS[(Math.floor(TBP/2401)%7)]);
+                $('#BT6').attr("src", BTS[(Math.floor(TBP/16807)%7)]);
+                $('#BT7').attr("src", BTS[(Math.floor(TBP/117649)%7)]);
+                $('#BT8').attr("src", BTS[(Math.floor(TBP/823543)%7)]);
+                $('#BT9').attr("src", BTS[(Math.floor(TBP/5764801)%7)]);
+                $('#BT10').attr("src", BTS[(Math.floor(TBP/40353607)%7)]);
+                $('#PC').html(TBP);
+                $('#PowerGenerator1Cost').html(PowerGenerator1[1]);
+                $('#PowerGenerator1Amount').html(PowerGenerator1[7]);
+                $('#PowerGenerator2Cost').html(PowerGenerator2[1]);
+                $('#PowerGenerator2Amount').html(PowerGenerator2[7]);
+                $('#PowerGenerator3Cost').html(PowerGenerator3[1]);
+                $('#PowerGenerator3Amount').html(PowerGenerator3[7]);
+                $('#PowerGenerator4Cost').html(PowerGenerator4[1]);
+                $('#PowerGenerator4Amount').html(PowerGenerator4[7]);
+                $('#PowerGenerator5Cost').html(PowerGenerator5[1]);
+                $('#PowerGenerator5Amount').html(PowerGenerator5[7]);
+                $('#PowerGenerator6Cost').html(PowerGenerator6[1]);
+                $('#PowerGenerator6Amount').html(PowerGenerator6[7]);
+            }
+
+            function ButtonToggle(a){
+                $('#BTN').attr("src", BTN[a]);
+            }
+
+            function SystemsMenuToggle(){
+                $('#shop').css({'margin-top': '2300px'});
+                $('#upgrades').css({'margin-top': '2300px'});
+                if ($('#systems').css('margin-top') == '750px'){
+                    $('#systems').css({'margin-top': '2300px'});
+                }else{
+                    $('#systems').css({'margin-top': '750px'});
+                }
+            }
+
+            function ShopMenuToggle(){
+                $('#systems').css({'margin-top': '2300px'});
+                $('#upgrades').css({'margin-top': '2300px'});
+                if ($('#shop').css('margin-top') == '750px'){
+                    $('#shop').css({'margin-top': '2300px'});
+                }else{
+                    $('#shop').css({'margin-top': '750px'});
+                }
+            }
+
+            function UpgradesMenuToggle(){
+                $('#systems').css({'margin-top': '2300px'});
+                $('#shop').css({'margin-top': '2300px'});
+                if ($('#upgrades').css('margin-top') == '750px'){
+                    $('#upgrades').css({'margin-top': '2300px'});
+                }else{
+                    $('#upgrades').css({'margin-top': '750px'});
+                }
+            }
+
+            function BuyPowerGenerator1(){
+                if(TBP >= PowerGenerator1[1]){
+                    if(PowerGenerator1[7] == 0){
+                        TBP = TBP - PowerGenerator1[1];
+                        PowerGenerator1[7]++;
+                        PowerGenerator1[1] = Math.floor(PowerGenerator1[1] * PowerGenerator1[2]);
+                        PowerGenerator1[2] = PowerGenerator1[2] + (PowerGenerator1[2]/1000);
+                        $('#PowerGenerator1Cost').html(PowerGenerator1[1]);
+                        $('#PowerGenerator1Amount').html(PowerGenerator1[7]);
+                        PowerGenerator1Loop();
+                        SpriteUpdater();
+                    }else{
+                        TBP = TBP - PowerGenerator1[1];
+                        PowerGenerator1[5] = PowerGenerator1[5] + 3;
+                        PowerGenerator1[7]++;
+                        PowerGenerator1[1] = Math.floor(PowerGenerator1[1] * PowerGenerator1[2]);
+                        PowerGenerator1[2] = PowerGenerator1[2] + (PowerGenerator1[2]/1000);
+                        $('#PowerGenerator1Cost').html(PowerGenerator1[1]);
+                        $('#PowerGenerator1Amount').html(PowerGenerator1[7]);
+                        SpriteUpdater();
+                    }
+                }else{
+                    alert('Not Enough Currency')
+                }
+
+            }
+
+            function PowerGenerator1Loop(){
+                setTimeout(() => {
+                    TBP = TBP + parseInt(PowerGenerator1[5]);
+                    SpriteUpdater();
+                    PowerGenerator1Loop();
+                }, PowerGenerator1[3]);
+            }
+
+
+            function BuyPowerGenerator2(){
+                if(TBP >= PowerGenerator2[1]){
+                    if(PowerGenerator2[7] == 0){
+                        TBP = TBP - PowerGenerator2[1];
+                        PowerGenerator2[7]++;
+                        PowerGenerator2[1] = Math.floor(PowerGenerator2[1] * PowerGenerator2[2]);
+                        PowerGenerator2[2] = PowerGenerator2[2] + (PowerGenerator2[2]/1000);
+                        $('#PowerGenerator2Cost').html(PowerGenerator2[1]);
+                        $('#PowerGenerator2Amount').html(PowerGenerator2[7]);
+                        PowerGenerator2Loop();
+                        SpriteUpdater();
+                    }else{
+                        TBP = TBP - PowerGenerator2[1];
+                        PowerGenerator2[5] = PowerGenerator2[5] + 1;
+                        PowerGenerator2[7]++;
+                        PowerGenerator2[1] = Math.floor(PowerGenerator2[1] * PowerGenerator2[2]);
+                        PowerGenerator2[2] = PowerGenerator2[2] + (PowerGenerator2[2]/1000);
+                        $('#PowerGenerator2Cost').html(PowerGenerator2[1]);
+                        $('#PowerGenerator2Amount').html(PowerGenerator2[7]);
+                        SpriteUpdater();
+                    }
+                }else{
+                    alert('Not Enough Currency')
+                }
+
+            }
+
+            function PowerGenerator2Loop(){
+                setTimeout(() => {
+                    TBP = TBP + parseInt(PowerGenerator2[5]);
+                    SpriteUpdater();
+                    PowerGenerator2Loop();
+                }, PowerGenerator2[3]);
+            }
+            
+            function BuyPowerGenerator3(){
+                if(TBP >= PowerGenerator3[1]){
+                    if(PowerGenerator3[7] == 0){
+                        TBP = TBP - PowerGenerator3[1];
+                        PowerGenerator3[7]++;
+                        PowerGenerator3[1] = Math.floor(PowerGenerator3[1] * PowerGenerator3[2]);
+                        PowerGenerator3[2] = PowerGenerator3[2] + (PowerGenerator3[2]/1000);
+                        $('#PowerGenerator3Cost').html(PowerGenerator3[1]);
+                        $('#PowerGenerator3Amount').html(PowerGenerator3[7]);
+                        PowerGenerator3Loop();
+                        SpriteUpdater();
+                    }else{
+                        TBP = TBP - PowerGenerator3[1];
+                        PowerGenerator3[5] = PowerGenerator3[5] + 14;
+                        PowerGenerator3[7]++;
+                        PowerGenerator3[1] = Math.floor(PowerGenerator3[1] * PowerGenerator3[2]);
+                        PowerGenerator3[2] = PowerGenerator3[2] + (PowerGenerator3[2]/1000);
+                        $('#PowerGenerator3Cost').html(PowerGenerator3[1]);
+                        $('#PowerGenerator3Amount').html(PowerGenerator3[7]);
+                        SpriteUpdater();
+                    }
+                }else{
+                    alert('Not Enough Currency')
+                }
+
+            }
+
+            function PowerGenerator3Loop(){
+                setTimeout(() => {
+                    TBP = TBP + parseInt(PowerGenerator3[5]);
+                    SpriteUpdater();
+                    PowerGenerator3Loop();
+                }, PowerGenerator3[3]);
+            }
+
+            function BuyPowerGenerator4(){
+                if(TBP >= PowerGenerator4[1]){
+                    if(PowerGenerator4[7] == 0){
+                        TBP = TBP - PowerGenerator4[1];
+                        PowerGenerator4[7]++;
+                        PowerGenerator4[1] = Math.floor(PowerGenerator4[1] * PowerGenerator4[2]);
+                        PowerGenerator4[2] = PowerGenerator4[2] + (PowerGenerator4[2]/1000);
+                        $('#PowerGenerator4Cost').html(PowerGenerator4[1]);
+                        $('#PowerGenerator4Amount').html(PowerGenerator4[7]);
+                        PowerGenerator4Loop();
+                        SpriteUpdater();
+                    }else{
+                        TBP = TBP - PowerGenerator4[1];
+                        PowerGenerator4[5] = PowerGenerator4[5] + 43;
+                        PowerGenerator4[7]++;
+                        PowerGenerator4[1] = Math.floor(PowerGenerator4[1] * PowerGenerator4[2]);
+                        PowerGenerator4[2] = PowerGenerator4[2] + (PowerGenerator4[2]/1000);
+                        $('#PowerGenerator4Cost').html(PowerGenerator4[1]);
+                        $('#PowerGenerator4Amount').html(PowerGenerator4[7]);
+                        SpriteUpdater();
+                    }
+                }else{
+                    alert('Not Enough Currency')
+                }
+
+            }
+
+            function PowerGenerator4Loop(){
+                setTimeout(() => {
+                    TBP = TBP + parseInt(PowerGenerator4[5]);
+                    SpriteUpdater();
+                    PowerGenerator4Loop();
+                }, PowerGenerator4[3]);
+            }
+
+            function BuyPowerGenerator5(){
+                if(TBP >= PowerGenerator5[1]){
+                    if(PowerGenerator5[7] == 0){
+                        TBP = TBP - PowerGenerator5[1];
+                        PowerGenerator5[7]++;
+                        PowerGenerator5[1] = Math.floor(PowerGenerator5[1] * PowerGenerator5[2]);
+                        PowerGenerator5[2] = PowerGenerator5[2] + (PowerGenerator5[2]/1000);
+                        $('#PowerGenerator5Cost').html(PowerGenerator5[1]);
+                        $('#PowerGenerator5Amount').html(PowerGenerator5[7]);
+                        PowerGenerator5Loop();
+                        SpriteUpdater();
+                    }else{
+                        TBP = TBP - PowerGenerator5[1];
+                        PowerGenerator5[5] = PowerGenerator5[5] + 3;
+                        PowerGenerator5[7]++;
+                        PowerGenerator5[1] = Math.floor(PowerGenerator5[1] * PowerGenerator5[2]);
+                        PowerGenerator5[2] = PowerGenerator5[2] + (PowerGenerator5[2]/1000);
+                        $('#PowerGenerator5Cost').html(PowerGenerator5[1]);
+                        $('#PowerGenerator5Amount').html(PowerGenerator5[7]);
+                        SpriteUpdater();
+                    }
+                }else{
+                    alert('Not Enough Currency')
+                }
+
+            }
+
+            function PowerGenerator5Loop(){
+                setTimeout(() => {
+                    TBP = TBP + parseInt(PowerGenerator5[5]);
+                    SpriteUpdater();
+                    PowerGenerator5Loop();
+                }, PowerGenerator5[3]);
+            }
+
+            function BuyPowerGenerator6(){
+                if(TBP >= PowerGenerator6[1]){
+                    if(PowerGenerator6[7] == 0){
+                        TBP = TBP - PowerGenerator6[1];
+                        PowerGenerator6[7]++;
+                        PowerGenerator6[1] = Math.floor(PowerGenerator6[1] * PowerGenerator6[2]);
+                        PowerGenerator6[2] = PowerGenerator6[2] + (PowerGenerator6[2]/1000);
+                        $('#PowerGenerator6Cost').html(PowerGenerator6[1]);
+                        $('#PowerGenerator6Amount').html(PowerGenerator6[7]);
+                        PowerGenerator6Loop();
+                        SpriteUpdater();
+                    }else{
+                        TBP = TBP - PowerGenerator6[1];
+                        PowerGenerator6[5] = PowerGenerator6[5] + 7000;
+                        PowerGenerator6[7]++;
+                        PowerGenerator6[1] = Math.floor(PowerGenerator6[1] * PowerGenerator6[2]);
+                        PowerGenerator6[2] = PowerGenerator6[2] + (PowerGenerator6[2]/1000);
+                        $('#PowerGenerator6Cost').html(PowerGenerator6[1]);
+                        $('#PowerGenerator6Amount').html(PowerGenerator6[7]);
+                        SpriteUpdater();
+                    }
+                }else{
+                    alert('Not Enough Currency')
+                }
+
+            }
+
+            function PowerGenerator6Loop(){
+                setTimeout(() => {
+                    TBP = TBP + parseInt(PowerGenerator6[5]);
+                    SpriteUpdater();
+                    PowerGenerator6Loop();
+                }, PowerGenerator6[3]);
+            }
+        </script>
+    </body>
